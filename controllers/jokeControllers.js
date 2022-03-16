@@ -1,42 +1,42 @@
 import { check, validationResult } from "express-validator";
 
-const books = [
+const jokes = [
   {
     id: 0,
     title: "Project Hail Mary",
-    author: "Andy Weir",
+    text: "Andy Weir",
     pages: 496,
   },
   {
     id: 1,
     title: "Harrow the Ninth",
-    author: "Tamsyn Muir",
+    text: "Tamsyn Muir",
     pages: 512,
   },
 ];
-export const getBooks = (req, res) => {
-  res.status(200).send(books);
+export const getJokes = (req, res) => {
+  res.status(200).send(jokes);
 };
-export const getBookById = (req, res) => {
-  let book = books.find((b) => b.id == req.params.id);
-  res.status(200).send(book);
+export const getJokeById = (req, res) => {
+  let joke = jokes.find((j) => j.id == req.params.id);
+  res.status(200).send(joke);
 };
-export const getBookByTitle = (req, res) => {
-  let result = books.filter((book) => book.title == req.query.title);
+export const getJokeByTitle = (req, res) => {
+  let result = jokes.filter((joke) => joke.title == req.query.title);
   res.status(200).send(result);
 };
 
-export const addBook = (req, res) => {
+export const addJoke = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  books.push(req.bod);
-  res.status(201).send(`Added ${book.title} to book collection`);
+  jokes.push(req.bod);
+  res.status(201).send(`Added ${joke.title} to joke collection`);
 };
 
 // attached as second param in a route
-export const newBookValidators = [
+export const newJokeValidators = [
   check("title").notEmpty().withMessage("Title field required"),
-  check("author").notEmpty().withMessage("Author field required"),
+  check("text").notEmpty().withMessage("Text field required"),
 ];

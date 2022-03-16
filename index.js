@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import booksRoutes from "./routes/bookRoutes.js";
+import jokesRoutes from "./routes/jokesRoutes.js";
 
 // complete application is here
 const app = express();
@@ -8,8 +8,8 @@ const port = 4000;
 
 app.use(bodyParser.json());
 
-//routes are /books & everything else throws a 404
-app.use("/books", booksRoutes);
+//routes are /jokes & everything else throws a 404
+app.use("/jokes", jokesRoutes);
 app.all("*", (req, res) => res.sendStatus(404));
 
 app.listen(port, () => {
