@@ -5,12 +5,12 @@ services:
     image: node:17-alpine
     container_name: backend
     build:
-      context: WitzAPI
+      context: src
       dockerfile: ./Dockerfile
     ports:
       - 3000:3000
     volumes:
-      - ./WitzAPI:/app
+      - ./src:/app
     depends_on:
       - mongodb
   mongodb:
