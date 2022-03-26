@@ -12,6 +12,10 @@ app.use(bodyParser.json());
 app.use("/jokes", jokesRoutes);
 app.all("*", (req, res) => res.sendStatus(404));
 
+mongoose.connect("mongodb://mongo:27017/test").then(() => {
+  console.log("Database connected");
+});
+
 app.listen(port, () => {
   console.log(`Server running on: http://localhost:${port}`);
 });
