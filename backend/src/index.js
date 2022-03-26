@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import jokesRoutes from "./routes/jokesRoutes.js";
+import mongoose from "mongoose";
 
 // complete application is here
 const app = express();

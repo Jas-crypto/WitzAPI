@@ -18,6 +18,7 @@ export const getJokes = (req, res) => {
   res.status(200).send(jokes);
 };
 export const getJokeById = (req, res) => {
+  //fehlermeldung 404 einfügen, ob Joke existiert
   let joke = jokes.find((j) => j.id == req.params.id);
   res.status(200).send(joke);
 };
