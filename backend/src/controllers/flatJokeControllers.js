@@ -38,7 +38,7 @@ export const editFlatJoke = (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     jokes.update(req.bod);
-    res.status(201).send(`Edited ${flatJoke.title} in joke collection`);
+    res.status(200).send(`Edited ${flatJoke.title} in joke collection`);
 };
 export const deleteFlatJoke = (req, res) => {
     let flatJoke = jokes.find((j) => j.id == req.params.id);
@@ -46,7 +46,7 @@ export const deleteFlatJoke = (req, res) => {
         return res.status(404).send(`${flatJoke.id} not found`);
     }
     jokes.deleteOne(req.id);
-    res.status(201).send(`Deleted ${flatJoke.title} in joke collection`);
+    res.status(200).send(`Deleted ${flatJoke.title} in joke collection`);
 };
 // attached as second param in a route
 export const newFlatJokeValidators = [

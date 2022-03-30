@@ -38,7 +38,7 @@ export const editStudentJoke=(req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
   jokes.update(req.bod);
-  res.status(201).send(`Edited ${studentJoke.title} in joke collection`);
+  res.status(200).send(`Edited ${studentJoke.title} in joke collection`);
 };
 export const deleteStudentJoke= (req, res) => {
   let studentJoke = jokes.find((j) => j.id == req.params.id);
@@ -46,7 +46,7 @@ export const deleteStudentJoke= (req, res) => {
     return res.status(404).send(`${studentJoke.id} not found`);
   } 
   jokes.deleteOne(req.id);
-  res.status(201).send(`Deleted ${studentJoke.title} in joke collection`);
+  res.status(200).send(`Deleted ${studentJoke.title} in joke collection`);
 };
 // attached as second param in a route
 export const newStudentJokeValidators = [
