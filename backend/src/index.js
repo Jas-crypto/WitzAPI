@@ -4,6 +4,8 @@ import computerScientistJokeRoutes from "./routes/computerScientistJokeRoutes.js
 import studentJokeRoutes from "./routes/studentJokeRoutes.js";
 import flatJokeRoutes from "./routes/flatJokeRoutes.js";
 import mongoose from "mongoose";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocs from "../swaggerDocs.js";
 
 // complete application is here
 const app = express();
@@ -15,6 +17,7 @@ app.use(bodyParser.json());
 app.use("/computerScientistJokes", computerScientistJokeRoutes);
 app.use("/studentJokes", studentJokeRoutes);
 app.use("/flatJokes", flatJokeRoutes);
+app.use("/api", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.all("*", (req, res) => res.sendStatus(404));
 
 mongoose.connect("mongodb://mongo:27017/test").then(() => {
