@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const jokeSchema = new mongoose.Schema( {
   title: String,  
-  text: String,
-  category: String
+  text: String
 });
 
 const jokes= await jokes.find();
