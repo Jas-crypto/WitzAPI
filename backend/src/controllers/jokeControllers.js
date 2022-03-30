@@ -1,13 +1,5 @@
 import { check, validationResult } from "express-validator";
-import mongoose from "mongoose";
-
-const jokeSchema = new mongoose.Schema( {
-  title: String,  
-  text: String,
-  category: String
-});
-
-const jokes= await jokes.find();
+import jokes from "../models/jokeModel.js";
 
 export const getJokes = (req, res) => {
   res.status(200).send(jokes);
@@ -35,6 +27,7 @@ export const addJoke = (req, res) => {
   jokes.push(req.bod);
   res.status(201).send(`Added ${joke.title} to joke collection`);
 };
+
 export const editJoke=(req, res) => {
   let joke = jokes.find((j) => j.id == req.params.id);
   if (joke.isEmpty()) {

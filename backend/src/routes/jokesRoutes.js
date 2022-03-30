@@ -1,5 +1,4 @@
 import express from "express";
-import { editJoke } from "../controllers/jokeControllers.js";
 import {
   getJokes,
   getJokeById,
@@ -8,7 +7,7 @@ import {
   editJoke,
   deleteJoke,
   newJokeValidators,
-} from "../controllers/jokesControllers.js";
+} from "../controllers/jokeControllers.js";
 
 const router = express.Router();
 
