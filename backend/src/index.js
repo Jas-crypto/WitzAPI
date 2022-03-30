@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-import jokesRoutes from "./routes/jokesRoutes.js";
+import flatJokeRoutes from "./routes/flatJokeRoutes.js";
+import computerScientistJokesRoutes from "./routes/computerScientistJokeRoutes.js";
 import studentJokeRoutes from "./routes/studentJokeRoutes.js";
 import mongoose from "mongoose";
 
@@ -11,7 +12,8 @@ const port = 4000;
 app.use(bodyParser.json());
 
 //routes are /jokes & everything else throws a 404
-app.use("/jokes", jokesRoutes);
+app.use("/computerScientistJokes", computerScientistJokesRoutes);
+app.use("/flatJokes", flatJokeRoutes);
 app.use("/studentJokes", studentJokeRoutes);
 app.all("*", (req, res) => res.sendStatus(404));
 
