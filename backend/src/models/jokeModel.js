@@ -5,4 +5,5 @@ const jokeSchema = new mongoose.Schema( {
   text: String
 });
 
-const jokes= await jokes.find();
+export const joke = mongoose.model("Joke", jokeSchema);
+

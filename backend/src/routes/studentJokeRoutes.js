@@ -7,7 +7,7 @@ import{
     editStudentJoke,
     deleteStudentJoke,
     newStudentJokeValidators,
-  }from "../conrtollers/studentJokeControllers.js";
+  }from "../controllers/studentJokeControllers.js";
 
   const router = express.Router();
 
