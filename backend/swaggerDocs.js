@@ -373,7 +373,189 @@ const swaggerDocs = {
           },
         },
     },
-    //FlatJokes 
+    //FlatJokes
+    
+    basePath: "/flatJokes",
+    tags: [
+      {
+        name: "Flat Jokes",
+        description: "flat jokes in the database",
+      },
+    ],
+    consumes: ["application/json"],
+    produces: ["application/json"],
+    paths: {
+      "/": {
+        get: {
+          tags: ["Flat Jokes"],
+          summary: "Get all flat jokes in the system",
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/definitions/Jokes",
+              },
+            },
+          },
+        },
+      },
+      "/{id}": {
+        get: {
+          tags: ["Flat Jokes"],
+          summary: "Get a specific flat joke by id",
+          parameters: [
+            {
+              name: "id",
+              in: "body",
+              description: "Id of the flat joke searched for",
+              schema: {
+                $ref: "#/definitions/Jokes",
+              },
+            },
+          ],
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/definitions/Jokes",
+              },
+            },
+            404: {
+              description: "Not Found",
+              schema: {
+                $ref: "#/definitions/Jokes",
+              },
+            },
+          },
+        },
+      },
+      "/search": {
+        get: {
+          tags: ["Flat Jokes"],
+          summary: "Get a specific flat joke by title",
+          parameters: [
+            {
+              name: "title",
+              in: "path",
+              description: "Title of the flat joke searched for",
+              schema: {
+                $ref: "#/definitions/Jokes",
+              },
+            },
+          ],
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/definitions/Jokes",
+              },
+            },
+            404: {
+              description: "Not Found",
+              schema: {
+                $ref: "#/definitions/Jokes",
+              },
+            },
+          },
+        },
+      },
+      "/add": {
+        post: {
+          tags: ["Flat Jokes"],
+          summary: "Add a new flat joke",
+          parameters: [
+            {
+              name: "flat joke",
+              in: "body",
+              description: "flat joke to be added",
+              schema: {
+                $ref: "#/definitions/Jokes",
+              },
+            },
+          ],
+          responses: {
+            201: {
+              description: "Created",
+              schema: {
+                $ref: "#/definitions/Jokes",
+              },
+            },
+            400: {
+              description: "Bad Request",
+              schema: {
+                $ref: "#/definitions/Jokes",
+              },
+            },
+          },
+        },
+      },
+      "/put":{
+        post: {
+            tags: ["Flat Jokes"],
+            summary: "Edit a flat joke",
+            parameters: [
+              {
+                name: "flat joke",
+                in: "body",
+                description: "flat joke to be edited",
+                schema: {
+                  $ref: "#/definitions/Jokes",
+                },
+              },
+            ],
+            responses: {
+              200: { //Welcher Statuscode?
+                description: "Ok",
+                schema: {
+                  $ref: "#/definitions/Jokes",
+                },
+              },
+              400: {
+                description: "Bad Request",
+                schema: {
+                  $ref: "#/definitions/Jokes",
+                },
+              },
+              404: {
+                description: "Not Found",
+                schema: {
+                  $ref: "#/definitions/Jokes",
+                },
+              },
+            },
+          },
+        },
+        "/delete": {
+          delete: {
+            tags: ["Flat Jokes"],
+            summary: "Delete a specific flat joke by id",
+            parameters: [
+              {
+                name: "id",
+                in: "path",
+                description: "Id of the flat joke to be deleted",
+                schema: {
+                  $ref: "#/definitions/Jokes",
+                },
+              },
+            ],
+            responses: {
+              200: {
+                description: "OK",
+                schema: {
+                  $ref: "#/definitions/Jokes",
+                },
+              },
+              404: {
+                description: "Not Found",
+                schema: {
+                  $ref: "#/definitions/Jokes",
+                },
+              },
+            },
+          },
+        },
+    },
 
     definitions: {
         Jokes: {
