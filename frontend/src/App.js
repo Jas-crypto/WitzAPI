@@ -23,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div id="title">Bookstore 📚📚 </div>
+        <div id="title"> Jokes </div>
         <button id="fetcher" onClick={this.fetchDisplayData}>
           Check out what's in store
         </button>
