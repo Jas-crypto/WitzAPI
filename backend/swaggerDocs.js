@@ -9,18 +9,26 @@ const swaggerDocs = {
         url: "https://opensource.org/licenses/MIT",
       },
     },
-    host: "localhost:3000",
-    basePath: "/computerScientistJokes",
+    host: "localhost:4000",
+    basePath: "/",
     tags: [
       {
         name: "Computer Scientist Jokes",
         description: "computer scientist jokes in the database",
       },
+      {
+        name: "Student Jokes",
+        description: "student jokes in the database",
+      },
+      {
+        name: "Flat Jokes",
+        description: "flat jokes in the database",
+      },
     ],
     consumes: ["application/json"],
     produces: ["application/json"],
     paths: {
-      "/": {
+      "computerScientistJokes/": {
         get: {
           tags: ["Computer Scientist Jokes"],
           summary: "Get all computer scientist jokes in the system",
@@ -34,7 +42,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/{id}": {
+      "computerScientistJokes/{id}": {
         get: {
           tags: ["Computer Scientist Jokes"],
           summary: "Get a specific computer scientist joke by id",
@@ -64,7 +72,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/search": {
+      "computerScientistJokes/search": {
         get: {
           tags: ["Computer Scientist Jokes"],
           summary: "Get a specific computer scientist joke by title",
@@ -94,7 +102,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/add": {
+      "computerScientistJokes/add": {
         post: {
           tags: ["Computer Scientist Jokes"],
           summary: "Add a new computer scientist joke",
@@ -124,7 +132,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/put":{
+      "computerScientistJokes/put":{
         post: {
             tags: ["Computer Scientist Jokes"],
             summary: "Edit a computer scientist joke",
@@ -139,7 +147,7 @@ const swaggerDocs = {
               },
             ],
             responses: {
-              200: { //Welcher Statuscode?
+              200: { 
                 description: "Ok",
                 schema: {
                   $ref: "#/definitions/Jokes",
@@ -160,7 +168,7 @@ const swaggerDocs = {
             },
           },
         },
-        "/delete": {
+        "computerScientistJokes/delete": {
           delete: {
             tags: ["Computer Scientist Jokes"],
             summary: "Delete a specific computer scientist joke by id",
@@ -190,19 +198,7 @@ const swaggerDocs = {
             },
           },
         },
-    },
-    //StudentJokes
-    basePath: "/studentJokes",
-    tags: [
-      {
-        name: "Student Jokes",
-        description: "student jokes in the database",
-      },
-    ],
-    consumes: ["application/json"],
-    produces: ["application/json"],
-    paths: {
-      "/": {
+      "studentJokes/": {
         get: {
           tags: ["Student Jokes"],
           summary: "Get all student jokes in the system",
@@ -216,7 +212,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/{id}": {
+      "studentJokes/{id}": {
         get: {
           tags: ["Student Jokes"],
           summary: "Get a specific student joke by id",
@@ -246,7 +242,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/search": {
+      "studentJokes/search": {
         get: {
           tags: ["Student Jokes"],
           summary: "Get a specific student joke by title",
@@ -276,7 +272,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/add": {
+      "studentJokes/add": {
         post: {
           tags: ["Student Jokes"],
           summary: "Add a new student joke",
@@ -306,7 +302,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/put":{
+      "studentJokes/put":{
         post: {
             tags: ["Student Jokes"],
             summary: "Edit a student joke",
@@ -321,7 +317,7 @@ const swaggerDocs = {
               },
             ],
             responses: {
-              200: { //Welcher Statuscode?
+              200: {
                 description: "Ok",
                 schema: {
                   $ref: "#/definitions/Jokes",
@@ -342,7 +338,7 @@ const swaggerDocs = {
             },
           },
         },
-        "/delete": {
+        "studentJokes/delete": {
           delete: {
             tags: ["Student Jokes"],
             summary: "Delete a specific student joke by id",
@@ -372,20 +368,7 @@ const swaggerDocs = {
             },
           },
         },
-    },
-    //FlatJokes
-    
-    basePath: "/flatJokes",
-    tags: [
-      {
-        name: "Flat Jokes",
-        description: "flat jokes in the database",
-      },
-    ],
-    consumes: ["application/json"],
-    produces: ["application/json"],
-    paths: {
-      "/": {
+      "flatJokes/": {
         get: {
           tags: ["Flat Jokes"],
           summary: "Get all flat jokes in the system",
@@ -399,7 +382,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/{id}": {
+      "flatJokes/{id}": {
         get: {
           tags: ["Flat Jokes"],
           summary: "Get a specific flat joke by id",
@@ -429,7 +412,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/search": {
+      "flatJokes/search": {
         get: {
           tags: ["Flat Jokes"],
           summary: "Get a specific flat joke by title",
@@ -459,7 +442,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/add": {
+      "flatJokes/add": {
         post: {
           tags: ["Flat Jokes"],
           summary: "Add a new flat joke",
@@ -489,7 +472,7 @@ const swaggerDocs = {
           },
         },
       },
-      "/put":{
+      "flatJokes/put":{
         post: {
             tags: ["Flat Jokes"],
             summary: "Edit a flat joke",
@@ -525,7 +508,7 @@ const swaggerDocs = {
             },
           },
         },
-        "/delete": {
+        "flatJokes/delete": {
           delete: {
             tags: ["Flat Jokes"],
             summary: "Delete a specific flat joke by id",
