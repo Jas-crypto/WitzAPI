@@ -2,18 +2,19 @@ import { check, validationResult } from "express-validator";
 import { Joke } from "../models/jokeModel.js";
 
 export const getStudentJokes = async (req, res) => {
+  res.set("Access-Control-Allow-Origin", "http://localhost:3000");
   const studentJokes = await Joke.find();
   res.status(200).send(studentJokes);
 };
 export const getStudentJokeById = async (req, res) => {
-  let studentJoke = await Joke.find((j) => j.id == req.params.id);
+  let studentJoke = await Joke.find(req.params.id);
   if (studentJoke.isEmpty()) {
     return res.status(404).send(`${studentJoke.id} not found`);
   } 
   res.status(200).send(studentJoke);
 };
 export const getStudentJokeByTitle = async (req, res) => {
-  let studentJoke = await Joke.filter((joke) => joke.title == req.query.title);
+  let studentJoke = await Joke.filter({title: req.query.title});
   if (studentJoke.isEmpty()) {
     return res.status(404).send(`${studentJoke.id} not found`);
   } 
@@ -30,8 +31,7 @@ export const addStudentJoke = async (req, res) => {
     text: req.body.text,
   });
 
-  studentJoke.save(studentJoke);
-  res.status(201).send(`Added ${req.bod.title} to joke collection`);
+  studentJoke.save(studentJoke).then((studentJoke) => res.status(201).send(studentJoke));
 };
 
 export const editStudentJoke = async (req, res) => {

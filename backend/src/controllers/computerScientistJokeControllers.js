@@ -2,6 +2,7 @@ import { check, validationResult } from "express-validator";
 import { Joke } from "../models/jokeModel.js";
 
 export const getComputerScientistJokes = async (req, res) => {
+    res.set("Access-Control-Allow-Origin", "http://localhost:3000");
     const computerScientistJoke = await Joke.find();
     res.status(200).send(computerScientistJoke);
 };
@@ -30,8 +31,7 @@ export const addComputerScientistJoke = async (req, res) => {
         text: req.body.text,
       });
     
-    computerScientistJoke.save(computerScientistJoke).then((todo) => res.status(201).send(todo));;
-    res.status(201).send(`Added ${req.bod.title} to joke collection`);
+    computerScientistJoke.save(computerScientistJoke).then((computerScientistJoke) => res.status(201).send(computerScientistJoke));
 };
 
 export const editComputerScientistJoke = async (req, res) => {

@@ -2,6 +2,7 @@ import { check, validationResult } from "express-validator";
 import { Joke } from "../models/jokeModel.js";
 
 export const getFlatJokes = async (req, res) => {
+    res.set("Access-Control-Allow-Origin", "http://localhost:3000");
     const flatJokes = await Joke.find();
     res.status(200).send(flatJokes);
 };
@@ -25,13 +26,12 @@ export const addFlatJoke = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    const studentJoke = new Joke({
+    const flatJoke = new Joke({
         title: req.body.title,
         text: req.body.text,
       });
     
-    studentJoke.save(studentJoke).then((todo) => res.status(201).send(todo));;
-    res.status(201).send(`Added ${req.bod.title} to joke collection`);
+    flatJoke.save(flatJoke).then((flatJoke) => res.status(201).send(flatJoke));;
 };
 
 export const editFlatJoke = async (req, res) => {
