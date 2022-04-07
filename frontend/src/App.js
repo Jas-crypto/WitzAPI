@@ -29,9 +29,9 @@ class App extends React.Component {
         </button>
         <div className="data">
           {/* generates a div for every entry */}
-          {this.state.books.map((book, key) => (
+          {this.state.flatJokes.map((flatJokes, key) => (
             <div key={key}>
-              {book.title} by {book.author}
+              {flatJokes.title} by {flatJokes.text}
             </div>
           ))}
         </div>
