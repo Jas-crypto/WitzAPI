@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchAllBooks } from "./RestClient";
+import { fetchAllFlatJokes } from "./RestClient";
 class App extends React.Component {
   // constructor initializes component state data
   // and binds methods
@@ -15,8 +15,8 @@ class App extends React.Component {
   // fetchAllBooks. as soon as the data is there it is set
   // as a state
   async fetchDisplayData() {
-    let data = await fetchAllBooks();
-    this.setState({ books: data });
+    let data = await fetchAllFlatJokes();
+    this.setState({ flatJokes: data });
   }
 
   // this is displayed on the screen
