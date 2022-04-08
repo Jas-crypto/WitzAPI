@@ -7,17 +7,18 @@ export const getStudentJokes = async (req, res) => {
   res.status(200).send(studentJokes);
 };
 export const getStudentJokeById = async (req, res) => {
-  let studentJoke = await Joke.find(req.params.id);
-  if (studentJoke.isEmpty()) {
-    return res.status(404).send(`${studentJoke.id} not found`);
-  } 
+  let studentJoke = await Joke.findById(req.params.id);
+  console.log(studentJoke);
+  if (!studentJoke) {
+    return res.status(404).send(`${req.params.id} not found`);
+  }
   res.status(200).send(studentJoke);
 };
 export const getStudentJokeByTitle = async (req, res) => {
-  let studentJoke = await Joke.filter({title: req.query.title});
-  if (studentJoke.isEmpty()) {
-    return res.status(404).send(`${studentJoke.id} not found`);
-  } 
+  let studentJoke = await Joke.find({title: req.query.title});
+  if (!studentJoke) {
+    return res.status(404).send(`${req.query.title} not found`);
+  }
   res.status(200).send(studentJoke);
 };
 
@@ -30,28 +31,27 @@ export const addStudentJoke = async (req, res) => {
     title: req.body.title,
     text: req.body.text,
   });
-
   studentJoke.save(studentJoke).then((studentJoke) => res.status(201).send(studentJoke));
 };
 
 export const editStudentJoke = async (req, res) => {
-  let studentJoke = await Joke.find((j) => j.id == req.params.id);
-  if (studentJoke.isEmpty()) {
-    return res.status(404).send(`${studentJoke.id} not found`);
-  } 
+  let studentJoke = await Joke.findById(req.params.id);
+  if (!studentJoke) {
+    return res.status(404).send(`${req.params.id} not found`);
+  }
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  Joke.update(req.bod);
+  await Joke.updateOne({id: req.params.id}, {title: `${req.body.title}`}, {text: `${req.body.text}`});
   res.status(200).send(`Edited ${studentJoke.title} in joke collection`);
 };
 export const deleteStudentJoke = async (req, res) => {
-  let studentJoke = await Joke.find((j) => j.id == req.params.id);
-  if (studentJoke.isEmpty()) {
-    return res.status(404).send(`${studentJoke.id} not found`);
+  let studentJoke = await Joke.findById(req.params.id);
+  if (!studentJoke) {
+    return res.status(404).send(`${req.params.id} not found`);
   } 
-  Joke.deleteOne(req.id);
+  await Joke.deleteOne({id: req.params.id});
   res.status(200).send(`Deleted ${studentJoke.title} in joke collection`);
 };
 // attached as second param in a route
