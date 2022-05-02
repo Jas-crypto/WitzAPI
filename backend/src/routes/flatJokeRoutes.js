@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.get("/", getFlatJokes);
 router.get("/:id", getFlatJokeById);
-router.get("/search", getFlatJokeByTitle);
+router.get("/search/:title", getFlatJokeByTitle);
 router.post("/", newFlatJokeValidators, addFlatJoke);
 router.put("/:id", newFlatJokeValidators, editFlatJoke);
 router.delete("/:id", deleteFlatJoke);
