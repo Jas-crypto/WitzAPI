@@ -43,7 +43,11 @@ export const editComputerScientistJoke = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    await Joke.updateOne({id: req.params.id}, {title: req.body.title}, {text: req.body.text});
+    await Joke.updateOne({id: req.params.id},{
+        $set:{
+            title: req.body.title, text: req.body.text
+        }
+    });
     res.status(200).send(`Edited ${computerScientistJoke.title} in joke collection`);
 };
 

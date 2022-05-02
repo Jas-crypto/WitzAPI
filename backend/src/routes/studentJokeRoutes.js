@@ -13,7 +13,7 @@ import{
 
   router.get("/", getStudentJokes);
   router.get("/:id", getStudentJokeById);
-  router.get("/search", getStudentJokeByTitle);
+  router.get("/search:title", getStudentJokeByTitle);
   router.post("/", newStudentJokeValidators, addStudentJoke);
   router.put("/:id", newStudentJokeValidators, editStudentJoke);
   router.delete("/:id", deleteStudentJoke);

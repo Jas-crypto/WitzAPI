@@ -15,7 +15,7 @@ export const getStudentJokeById = async (req, res) => {
   res.status(200).send(studentJoke);
 };
 export const getStudentJokeByTitle = async (req, res) => {
-  let studentJoke = await Joke.find({title: req.query.title});
+  let studentJoke = await Joke.find({title: req.params.title});
   if (!studentJoke) {
     return res.status(404).send(`${req.query.title} not found`);
   }
@@ -43,7 +43,11 @@ export const editStudentJoke = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  await Joke.updateOne({id: req.params.id}, {title: `${req.body.title}`}, {text: `${req.body.text}`});
+  await Joke.updateOne({id: req.params.id}, {
+    $set:{
+        title: req.body.title, text: req.body.text
+    }
+  });
   res.status(200).send(`Edited ${studentJoke.title} in joke collection`);
 };
 export const deleteStudentJoke = async (req, res) => {
