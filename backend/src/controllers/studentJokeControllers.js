@@ -1,13 +1,13 @@
 import { check, validationResult } from "express-validator";
-import { Joke } from "../models/jokeModel.js";
+import { StudentJoke } from "../models/jokeModel.js";
 
 export const getStudentJokes = async (req, res) => {
   res.set("Access-Control-Allow-Origin", "http://localhost:3000");
-  const studentJokes = await Joke.find();
+  const studentJokes = await StudentJoke.find();
   res.status(200).send(studentJokes);
 };
 export const getStudentJokeById = async (req, res) => {
-  let studentJoke = await Joke.findById(req.params.id);
+  let studentJoke = await StudentJoke.findById(req.params.id);
   console.log(studentJoke);
   if (!studentJoke) {
     return res.status(404).send(`${req.params.id} not found`);
@@ -15,7 +15,7 @@ export const getStudentJokeById = async (req, res) => {
   res.status(200).send(studentJoke);
 };
 export const getStudentJokeByTitle = async (req, res) => {
-  let studentJoke = await Joke.find({title: req.params.title});
+  let studentJoke = await StudentJoke.find({title: req.params.title});
   if (!studentJoke) {
     return res.status(404).send(`${req.query.title} not found`);
   }
@@ -27,7 +27,7 @@ export const addStudentJoke = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const studentJoke = new Joke({
+  const studentJoke = new StudentJoke({
     title: req.body.title,
     text: req.body.text,
   });
@@ -35,7 +35,7 @@ export const addStudentJoke = async (req, res) => {
 };
 
 export const editStudentJoke = async (req, res) => {
-  let studentJoke = await Joke.findById(req.params.id);
+  let studentJoke = await StudentJoke.findById(req.params.id);
   if (!studentJoke) {
     return res.status(404).send(`${req.params.id} not found`);
   }
@@ -43,7 +43,7 @@ export const editStudentJoke = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  await Joke.updateOne({id: req.params.id}, {
+  await StudentJoke.updateOne({id: req.params.id}, {
     $set:{
         title: req.body.title, text: req.body.text
     }
@@ -51,11 +51,11 @@ export const editStudentJoke = async (req, res) => {
   res.status(200).send(`Edited ${studentJoke.title} in joke collection`);
 };
 export const deleteStudentJoke = async (req, res) => {
-  let studentJoke = await Joke.findById(req.params.id);
+  let studentJoke = await StudentJoke.findById(req.params.id);
   if (!studentJoke) {
     return res.status(404).send(`${req.params.id} not found`);
   } 
-  await Joke.deleteOne({id: req.params.id});
+  await StudentJoke.deleteOne({id: req.params.id});
   res.status(200).send(`Deleted ${studentJoke.title} in joke collection`);
 };
 // attached as second param in a route

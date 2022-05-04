@@ -5,5 +5,7 @@ const jokeSchema = new mongoose.Schema( {
   text: String
 });
 
-export const Joke = mongoose.model("Joke", jokeSchema);
+export const ComputerScientistJoke = mongoose.model("ComputerScientistJoke", jokeSchema);
+export const studentJoke = mongoose.model("StudentJoke", jokeSchema);
+export const FlatJoke = mongoose.model("FlatJoke", jokeSchema);
 
