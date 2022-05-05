@@ -6,6 +6,6 @@ const jokeSchema = new mongoose.Schema( {
 });
 
 export const ComputerScientistJoke = mongoose.model("ComputerScientistJoke", jokeSchema);
-export const studentJoke = mongoose.model("StudentJoke", jokeSchema);
+export const StudentJoke = mongoose.model("StudentJoke", jokeSchema);
 export const FlatJoke = mongoose.model("FlatJoke", jokeSchema);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchAllFlatJokes } from "./RestClient";
+import { fetchAllFlatJokes, fetchAllStudentJokes, fetchAllComputerScientistJokes } from "./RestClient";
 class App extends React.Component {
   // constructor initializes component state data
   // and binds methods
@@ -7,6 +7,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       flatJokes: [],
+      studentJokes: [],
+      computerScientistJokes: []
     };
     this.fetchDisplayData = this.fetchDisplayData.bind(this);
   }
@@ -15,8 +17,10 @@ class App extends React.Component {
   // fetchAllBooks. as soon as the data is there it is set
   // as a state
   async fetchDisplayData() {
-    let data = await fetchAllFlatJokes();
-    this.setState({ flatJokes: data });
+    let data1 = await fetchAllFlatJokes();
+    let data2 = await fetchAllStudentJokes();
+    let data3 = await fetchAllComputerScientistJokes();
+    this.setState({ flatJokes: data1, studentJokes: data2, computerScientistJokes: data3 });
   }
 
   // this is displayed on the screen
@@ -28,10 +32,25 @@ class App extends React.Component {
           Check out what's in store
         </button>
         <div className="data">
+          <div>Flachwitze</div>
           {/* generates a div for every entry */}
           {this.state.flatJokes.map((flatJokes, key) => (
             <div key={key}>
-              {flatJokes.title} by {flatJokes.text}
+              {flatJokes.title} : {flatJokes.text}
+            </div>
+          ))}
+          <div>Studentenwitze</div>
+          {/* generates a div for every entry */}
+          {this.state.studentJokes.map((studentJokes, key) => (
+            <div key={key}>
+              {studentJokes.title} : {studentJokes.text}
+            </div>
+          ))}
+          <div>Informatikerwitze</div>
+          {/* generates a div for every entry */}
+          {this.state.computerScientistJokes.map((computerScientistJokes, key) => (
+            <div key={key}>
+              {computerScientistJokes.title} : {computerScientistJokes.text}
             </div>
           ))}
         </div>
